@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import lz.renatkaitmazov.atlanteamtask.R
+import lz.renatkaitmazov.atlanteamtask.addFragment
 import lz.renatkaitmazov.atlanteamtask.databinding.ActivityMainBinding
+import lz.renatkaitmazov.atlanteamtask.main.cardlist.CardListFragment
 
 /**
  *
@@ -28,6 +30,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         initBottomNavView(binding.bottomView)
+        if (savedInstanceState == null) {
+            addFragment(CardListFragment.newInstance(), R.id.fragment_container)
+        }
     }
 
     private fun initBottomNavView(navView: BottomNavigationView) {
