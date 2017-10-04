@@ -4,12 +4,32 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/root_main_activity"
+        android:id="@+id/main_activity_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_view"
+            tools:background="@android:color/darker_gray"/>
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@id/bottom_view"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_bottom_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/menu_bottom"
+            android:background="@color/colorPrimary"
+            app:itemTextColor="@android:color/white"
+            app:itemIconTint="@android:color/white"/>
 
     </android.support.constraint.ConstraintLayout>
-
 </layout>
 
