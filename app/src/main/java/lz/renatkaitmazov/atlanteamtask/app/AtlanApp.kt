@@ -1,13 +1,17 @@
 package lz.renatkaitmazov.atlanteamtask.app
 
 import android.app.Application
+import lz.renatkaitmazov.atlanteamtask.di.AppComponent
+import lz.renatkaitmazov.atlanteamtask.di.AppModule
+import lz.renatkaitmazov.atlanteamtask.di.DaggerAppComponent
+import lz.renatkaitmazov.atlanteamtask.di.NetModule
 
 /**
  *
  * @author Renat Kaitmazov
  */
 
-class AtlanApp: Application() {
+class AtlanApp : Application() {
 
     /*------------------------------------------------------------------------*/
     // Static
@@ -16,6 +20,17 @@ class AtlanApp: Application() {
     companion object {
         @JvmStatic lateinit var instance: AtlanApp
             private set
+    }
+
+    /*------------------------------------------------------------------------*/
+    // Properties
+    /*------------------------------------------------------------------------*/
+
+    val appComponent: AppComponent by lazy(LazyThreadSafetyMode.NONE) {
+        DaggerAppComponent.builder()
+                .appModule(AppModule(this))
+                .netModule(NetModule())
+                .build()
     }
 
     /*------------------------------------------------------------------------*/
@@ -28,5 +43,4 @@ class AtlanApp: Application() {
         Thread.currentThread().priority = Thread.MAX_PRIORITY
         instance = this
     }
-
 }
