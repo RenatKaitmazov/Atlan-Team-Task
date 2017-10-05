@@ -3,4 +3,20 @@
 
     <string name="title_cards">Cards</string>
     <string name="title_my_contacts">My Contacts</string>
+
+    <string name="label_ip">IP address:</string>
+    <string name="label_address">Headers</string>
+    <string name="label_accept_language">Accept-Language:</string>
+    <string name="label_host">Host:</string>
+    <string name="label_user_agent">User-Agent:</string>
+    <string name="label_accept">Accept:</string>
+    <string name="label_date_time">Date and Time</string>
+    <string name="label_time">Time:</string>
+    <string name="label_milliseconds">Milliseconds since epoch:</string>
+    <string name="label_date">Date:</string>
+    <string name="label_echo_json">Echo JSON</string>
+    <string name="hint_echo_json">key value</string>
+    <string name="label_submit">Submit</string>
+    <string name="validation">Validation</string>
+    <string name="hint_validation">{\"key\": \"value\"}</string>
 </resources>

@@ -1,6 +1,7 @@
-package lz.renatkaitmazov.atlanteamtask.main.cardlist
+package lz.renatkaitmazov.atlanteamtask.view.main.cardlist
 
 import lz.renatkaitmazov.atlanteamtask.base.LoadingListFragment
+import lz.renatkaitmazov.atlanteamtask.view.main.cardlist.adapter.CardAdapter
 
 /**
  *
@@ -9,6 +10,11 @@ import lz.renatkaitmazov.atlanteamtask.base.LoadingListFragment
 
 class CardListFragment : LoadingListFragment() {
 
+    /*------------------------------------------------------------------------*/
+    // LoadingListFragment implementation
+    /*------------------------------------------------------------------------*/
+
+    override fun getAdapter() = CardAdapter()
 
     /*------------------------------------------------------------------------*/
     // API

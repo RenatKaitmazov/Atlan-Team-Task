@@ -3,6 +3,8 @@ package lz.renatkaitmazov.atlanteamtask.base
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +25,7 @@ abstract class LoadingListFragment : Fragment(), LoadingView {
     /*------------------------------------------------------------------------*/
 
     protected lateinit var binding: FragmentLoadingListBinding
+    protected lateinit var recyclerView: RecyclerView
 
     /*------------------------------------------------------------------------*/
     // Lifecycle Events
@@ -37,8 +40,22 @@ abstract class LoadingListFragment : Fragment(), LoadingView {
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_loading_list, container, false)
+        initRecyclerView(binding.recyclerView)
         return binding.root
     }
+
+    private fun initRecyclerView(recyclerView: RecyclerView) {
+        this.recyclerView = recyclerView
+        this.recyclerView.setHasFixedSize(true)
+        this.recyclerView.layoutManager = LinearLayoutManager(activity)
+        this.recyclerView.adapter = getAdapter()
+    }
+
+    /*------------------------------------------------------------------------*/
+    // Abstract methods
+    /*------------------------------------------------------------------------*/
+
+    protected abstract fun getAdapter(): RecyclerView.Adapter<out RecyclerView.ViewHolder>
 
     /*------------------------------------------------------------------------*/
     // LoadingView implementation

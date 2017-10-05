@@ -1,4 +1,4 @@
-package lz.renatkaitmazov.atlanteamtask.main.cardlist.adapter
+package lz.renatkaitmazov.atlanteamtask.view.main.cardlist.adapter
 
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
@@ -6,19 +6,21 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import lz.renatkaitmazov.atlanteamtask.R
 import lz.renatkaitmazov.atlanteamtask.databinding.ItemCardBinding
+import lz.renatkaitmazov.atlanteamtask.view.model.CommonViewModel
 
 /**
  *
  * @author Renat Kaitmazov
  */
 
-class CardAdapter : RecyclerView.Adapter<CardViewHodler>() {
+class CardAdapter(cardList: MutableList<CommonViewModel> = ArrayList())
+    : RecyclerView.Adapter<CardViewHolder>() {
 
     /*------------------------------------------------------------------------*/
     // Properties
     /*------------------------------------------------------------------------*/
 
-    private val cardList: MutableList<Any> = ArrayList()
+    private val cardList: MutableList<CommonViewModel> = cardList
 
     /*------------------------------------------------------------------------*/
     // RecyclerView.Adapter implementation
@@ -26,7 +28,7 @@ class CardAdapter : RecyclerView.Adapter<CardViewHodler>() {
 
     override fun getItemCount() = cardList.size
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): CardViewHodler {
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): CardViewHolder {
         val context = parent!!.context
         val layoutInflater = LayoutInflater.from(context)
         val binding = DataBindingUtil.inflate<ItemCardBinding>(layoutInflater,
@@ -34,18 +36,18 @@ class CardAdapter : RecyclerView.Adapter<CardViewHodler>() {
                 parent,
                 false
         )
-        return CardViewHodler(binding)
+        return CardViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: CardViewHodler?, position: Int) {
-        TODO("Create a view model class and then bind properties of that class with view")
+    override fun onBindViewHolder(holder: CardViewHolder?, position: Int) {
+        holder?.bind(cardList[position])
     }
 
     /*------------------------------------------------------------------------*/
     // API
     /*------------------------------------------------------------------------*/
 
-    fun add(card: Any): Boolean {
+    fun add(card: CommonViewModel): Boolean {
         val index = cardList.lastIndex
         val isAdded = cardList.add(card)
         if (isAdded) {
@@ -54,7 +56,7 @@ class CardAdapter : RecyclerView.Adapter<CardViewHodler>() {
         return isAdded
     }
 
-    fun addAll(cardList: List<Any>): Boolean {
+    fun addAll(cardList: List<CommonViewModel>): Boolean {
         this.cardList.clear()
         val isAdded = this.cardList.addAll(cardList)
         if (isAdded) {

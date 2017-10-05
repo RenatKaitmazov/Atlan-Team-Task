@@ -1,4 +1,4 @@
-package lz.renatkaitmazov.atlanteamtask.main
+package lz.renatkaitmazov.atlanteamtask.view.main
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import lz.renatkaitmazov.atlanteamtask.R
 import lz.renatkaitmazov.atlanteamtask.addFragment
 import lz.renatkaitmazov.atlanteamtask.databinding.ActivityMainBinding
-import lz.renatkaitmazov.atlanteamtask.main.cardlist.CardListFragment
+import lz.renatkaitmazov.atlanteamtask.view.main.cardlist.CardListFragment
 
 /**
  *
