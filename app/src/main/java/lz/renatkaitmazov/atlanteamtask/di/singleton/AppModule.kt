@@ -1,8 +1,9 @@
-package lz.renatkaitmazov.atlanteamtask.di
+package lz.renatkaitmazov.atlanteamtask.di.singleton
 
 import dagger.Module
 import dagger.Provides
 import lz.renatkaitmazov.atlanteamtask.app.AtlanApp
+import lz.renatkaitmazov.atlanteamtask.di.NAME_APP_CONTEXT
 import javax.inject.Named
 import javax.inject.Singleton
 

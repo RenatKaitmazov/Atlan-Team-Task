@@ -1,14 +1,55 @@
 package lz.renatkaitmazov.atlanteamtask.view.main.cardlist
 
+import android.os.Bundle
+import android.view.View
+import lz.renatkaitmazov.atlanteamtask.app.AtlanApp
 import lz.renatkaitmazov.atlanteamtask.base.LoadingListFragment
+import lz.renatkaitmazov.atlanteamtask.di.fragment.FragmentModule
+import lz.renatkaitmazov.atlanteamtask.di.fragment.FragmentSubcomponent
 import lz.renatkaitmazov.atlanteamtask.view.main.cardlist.adapter.CardAdapter
+import javax.inject.Inject
 
 /**
  *
  * @author Renat Kaitmazov
  */
 
-class CardListFragment : LoadingListFragment() {
+class CardListFragment : LoadingListFragment(), CardListView {
+
+    /*------------------------------------------------------------------------*/
+    // Properties
+    /*------------------------------------------------------------------------*/
+
+    private var fragmentSubcomponent: FragmentSubcomponent? = null
+    @Inject lateinit var presenter: CardListPresenterImpl
+
+    /*------------------------------------------------------------------------*/
+    // Lifecycle Events
+    /*------------------------------------------------------------------------*/
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        makeInjectable()
+        presenter.bind(this)
+    }
+
+    private fun makeInjectable() {
+        fragmentSubcomponent = AtlanApp.instance
+                .appComponent
+                .plus(FragmentModule())
+        fragmentSubcomponent!!.inject(this)
+    }
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        presenter.fetchCommonData()
+    }
+
+    override fun onDestroy() {
+        presenter.unbind()
+        fragmentSubcomponent = null
+        super.onDestroy()
+    }
 
     /*------------------------------------------------------------------------*/
     // LoadingListFragment implementation

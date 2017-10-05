@@ -1,10 +1,10 @@
 package lz.renatkaitmazov.atlanteamtask.app
 
 import android.app.Application
-import lz.renatkaitmazov.atlanteamtask.di.AppComponent
-import lz.renatkaitmazov.atlanteamtask.di.AppModule
-import lz.renatkaitmazov.atlanteamtask.di.DaggerAppComponent
-import lz.renatkaitmazov.atlanteamtask.di.NetModule
+import lz.renatkaitmazov.atlanteamtask.di.singleton.AppComponent
+import lz.renatkaitmazov.atlanteamtask.di.singleton.AppModule
+import lz.renatkaitmazov.atlanteamtask.di.singleton.DaggerAppComponent
+import lz.renatkaitmazov.atlanteamtask.di.singleton.NetModule
 
 /**
  *

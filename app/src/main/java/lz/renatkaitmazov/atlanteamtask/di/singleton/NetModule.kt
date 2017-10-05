@@ -1,4 +1,4 @@
-package lz.renatkaitmazov.atlanteamtask.di
+package lz.renatkaitmazov.atlanteamtask.di.singleton
 
 import dagger.Module
 import dagger.Provides
