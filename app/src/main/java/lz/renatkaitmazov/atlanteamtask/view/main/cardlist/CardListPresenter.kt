@@ -9,5 +9,5 @@ import lz.renatkaitmazov.atlanteamtask.base.Presenter
  */
 
 interface CardListPresenter<in V : BaseView> : Presenter<V> {
-    fun fetchCommonData()
+    fun getCommonData()
 }

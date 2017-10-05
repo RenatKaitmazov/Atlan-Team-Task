@@ -7,6 +7,7 @@ import lz.renatkaitmazov.atlanteamtask.base.LoadingListFragment
 import lz.renatkaitmazov.atlanteamtask.di.fragment.FragmentModule
 import lz.renatkaitmazov.atlanteamtask.di.fragment.FragmentSubcomponent
 import lz.renatkaitmazov.atlanteamtask.view.main.cardlist.adapter.CardAdapter
+import lz.renatkaitmazov.atlanteamtask.view.model.CommonViewModel
 import javax.inject.Inject
 
 /**
@@ -42,13 +43,21 @@ class CardListFragment : LoadingListFragment(), CardListView {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presenter.fetchCommonData()
+        presenter.getCommonData()
     }
 
     override fun onDestroy() {
         presenter.unbind()
         fragmentSubcomponent = null
         super.onDestroy()
+    }
+
+    /*------------------------------------------------------------------------*/
+    // CardListView implementation
+    /*------------------------------------------------------------------------*/
+    override fun showCommonData(commonData: List<CommonViewModel>) {
+        val cardAdapter = recyclerView.adapter as? CardAdapter
+        cardAdapter?.addAll(commonData)
     }
 
     /*------------------------------------------------------------------------*/
