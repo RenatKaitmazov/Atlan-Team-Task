@@ -1,4 +1,4 @@
-package lz.renatkaitmazov.atlanteamtask.view.model
+package lz.renatkaitmazov.atlanteamtask.main.cardlist.model
 
 import lz.renatkaitmazov.atlanteamtask.data.model.CommonModel
 
@@ -7,7 +7,7 @@ import lz.renatkaitmazov.atlanteamtask.data.model.CommonModel
  * @author Renat Kaitmazov
  */
 
-class ViewModelMapper {
+class CardMapper {
 
     /*------------------------------------------------------------------------*/
     // Static

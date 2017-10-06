@@ -3,6 +3,7 @@ package lz.renatkaitmazov.atlanteamtask
 import android.annotation.SuppressLint
 import android.support.annotation.IdRes
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN
 import android.support.v7.app.AppCompatActivity
 
 /**
@@ -30,5 +31,6 @@ fun AppCompatActivity.addFragment(fragment: Fragment, @IdRes containerId: Int) {
 fun AppCompatActivity.replaceFragment(fragment: Fragment, @IdRes containerId: Int) {
     supportFragmentManager.beginTransaction()
             .replace(containerId, fragment)
+            .setTransition(TRANSIT_FRAGMENT_OPEN)
             .commitNow()
 }

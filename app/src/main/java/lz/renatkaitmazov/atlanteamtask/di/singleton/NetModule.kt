@@ -2,7 +2,7 @@ package lz.renatkaitmazov.atlanteamtask.di.singleton
 
 import dagger.Module
 import dagger.Provides
-import lz.renatkaitmazov.atlanteamtask.data.CommonDataCache
+import lz.renatkaitmazov.atlanteamtask.data.DataCache
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -69,5 +69,5 @@ class NetModule() {
 
     @Provides
     @Singleton
-    fun provideCommonDataCache() = CommonDataCache()
+    fun provideCommonDataCache() = DataCache()
 }

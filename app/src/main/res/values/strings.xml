@@ -4,6 +4,8 @@
     <string name="title_cards">Cards</string>
     <string name="title_my_contacts">My Contacts</string>
 
+    <!--Card List Item Resources-->
+
     <string name="label_ip">IP address:</string>
     <string name="label_address">Headers</string>
     <string name="label_accept_language">Accept-Language:</string>
@@ -19,4 +21,9 @@
     <string name="label_submit">Submit</string>
     <string name="validation">Validation</string>
     <string name="hint_validation">{\"key\": \"value\"}</string>
+
+    <!--Contact List Item Resources-->
+    <string name="label_first_name">First Name:</string>
+    <string name="label_last_name">Last Name:</string>
+    <string name="label_phone_number">Phone Number:</string>
 </resources>

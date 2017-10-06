@@ -2,7 +2,7 @@ package lz.renatkaitmazov.atlanteamtask.di.fragment
 
 import dagger.Subcomponent
 import lz.renatkaitmazov.atlanteamtask.di.scope.FragmentScope
-import lz.renatkaitmazov.atlanteamtask.view.main.cardlist.CardListFragment
+import lz.renatkaitmazov.atlanteamtask.main.cardlist.CardListFragment
 
 /**
  *
@@ -10,8 +10,8 @@ import lz.renatkaitmazov.atlanteamtask.view.main.cardlist.CardListFragment
  */
 
 @FragmentScope
-@Subcomponent(modules = arrayOf(FragmentModule::class))
-interface FragmentSubcomponent {
+@Subcomponent(modules = arrayOf(CardListFragmentModule::class))
+interface CardListFragmentSubcomponent {
     // Specify injection targets here.
     fun inject(target: CardListFragment)
 }

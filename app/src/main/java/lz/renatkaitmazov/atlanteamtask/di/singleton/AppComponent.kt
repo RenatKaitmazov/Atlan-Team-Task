@@ -1,8 +1,10 @@
 package lz.renatkaitmazov.atlanteamtask.di.singleton
 
 import dagger.Component
-import lz.renatkaitmazov.atlanteamtask.di.fragment.FragmentModule
-import lz.renatkaitmazov.atlanteamtask.di.fragment.FragmentSubcomponent
+import lz.renatkaitmazov.atlanteamtask.di.fragment.CardListFragmentModule
+import lz.renatkaitmazov.atlanteamtask.di.fragment.CardListFragmentSubcomponent
+import lz.renatkaitmazov.atlanteamtask.di.fragment.ContactListFragmentModule
+import lz.renatkaitmazov.atlanteamtask.di.fragment.ContactListFragmentSubcomponent
 import javax.inject.Singleton
 
 /**
@@ -16,5 +18,6 @@ interface AppComponent {
     // Specify injection targets here.
 
     // Factory methods for subcomponents
-    fun plus(module: FragmentModule): FragmentSubcomponent
+    fun plus(moduleCardList: CardListFragmentModule): CardListFragmentSubcomponent
+    fun plus(moduleContactList: ContactListFragmentModule): ContactListFragmentSubcomponent
 }

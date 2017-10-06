@@ -1,8 +1,8 @@
-package lz.renatkaitmazov.atlanteamtask.view.main.cardlist.adapter
+package lz.renatkaitmazov.atlanteamtask.main.cardlist.adapter
 
 import android.support.v7.widget.RecyclerView
 import lz.renatkaitmazov.atlanteamtask.databinding.ItemCardBinding
-import lz.renatkaitmazov.atlanteamtask.view.model.CommonViewModel
+import lz.renatkaitmazov.atlanteamtask.main.cardlist.model.CommonViewModel
 
 /**
  *

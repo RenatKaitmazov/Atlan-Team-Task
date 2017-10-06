@@ -1,11 +1,11 @@
-package lz.renatkaitmazov.atlanteamtask.view.main.cardlist
+package lz.renatkaitmazov.atlanteamtask.main.cardlist
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import lz.renatkaitmazov.atlanteamtask.base.AbsPresenter
-import lz.renatkaitmazov.atlanteamtask.data.RestRepository
-import lz.renatkaitmazov.atlanteamtask.view.model.ViewModelMapper
+import lz.renatkaitmazov.atlanteamtask.data.remote.RestRepository
+import lz.renatkaitmazov.atlanteamtask.main.cardlist.model.CardMapper
 import java.util.concurrent.TimeUnit
 
 /**
@@ -14,16 +14,8 @@ import java.util.concurrent.TimeUnit
  */
 
 class CardListPresenterImpl(private val restRepository: RestRepository,
-                            private val mapper: ViewModelMapper)
-    : AbsPresenter<CardListView>(), CardListPresenter<CardListView> {
-
-    /*------------------------------------------------------------------------*/
-    // Static
-    /*------------------------------------------------------------------------*/
-
-    companion object {
-        private const val TIMEOUT = 10L
-    }
+                            private val mapper: CardMapper)
+    : AbsPresenter<CardListView>(), CardListPresenter {
 
     /*------------------------------------------------------------------------*/
     // Properties
@@ -45,8 +37,8 @@ class CardListPresenterImpl(private val restRepository: RestRepository,
     /*------------------------------------------------------------------------*/
 
     override fun getCommonData() {
+        view?.showProgress()
         val disposable = restRepository.getCommonData()
-                .doOnSubscribe { view?.showProgress() }
                 .map(mapper::map)
                 .timeout(TIMEOUT, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
@@ -58,7 +50,10 @@ class CardListPresenterImpl(private val restRepository: RestRepository,
                                 view!!.showCommonData(commonDataList)
                             }
                         },
-                        error@ { view?.hideProgress() }
+                        error@ {
+                            view?.hideProgress()
+                            println(it)
+                        }
                 )
         compositeDisposable.add(disposable)
     }

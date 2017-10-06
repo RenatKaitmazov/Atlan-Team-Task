@@ -1,19 +1,17 @@
 package lz.renatkaitmazov.atlanteamtask.data
 
-import io.reactivex.Single
-
 /**
  *
  * @author Renat Kaitmazov
  */
 
-class CommonDataCache {
+class DataCache {
 
     /*------------------------------------------------------------------------*/
     // Properties
     /*------------------------------------------------------------------------*/
 
-    private val cache: MutableMap<String, Any> = HashMap(1)
+    private val cache: MutableMap<String, Any> = HashMap(2)
 
     /*------------------------------------------------------------------------*/
     // API

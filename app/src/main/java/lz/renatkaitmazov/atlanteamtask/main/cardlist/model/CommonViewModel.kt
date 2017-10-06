@@ -1,4 +1,4 @@
-package lz.renatkaitmazov.atlanteamtask.view.model
+package lz.renatkaitmazov.atlanteamtask.main.cardlist.model
 
 /**
  *

@@ -1,4 +1,4 @@
-package lz.renatkaitmazov.atlanteamtask.data
+package lz.renatkaitmazov.atlanteamtask.data.remote
 
 import android.support.annotation.IntDef
 

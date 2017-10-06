@@ -3,6 +3,7 @@
           package="lz.renatkaitmazov.atlanteamtask">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
 
     <application
         android:name=".app.AtlanApp"
@@ -13,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".view.main.MainActivity"
+            android:name="lz.renatkaitmazov.atlanteamtask.main.MainActivity"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

@@ -1,4 +1,4 @@
-package lz.renatkaitmazov.atlanteamtask.view.main.cardlist.adapter
+package lz.renatkaitmazov.atlanteamtask.main.cardlist.adapter
 
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import lz.renatkaitmazov.atlanteamtask.R
 import lz.renatkaitmazov.atlanteamtask.databinding.ItemCardBinding
-import lz.renatkaitmazov.atlanteamtask.view.model.CommonViewModel
+import lz.renatkaitmazov.atlanteamtask.main.cardlist.model.CommonViewModel
 
 /**
  *
@@ -46,15 +46,6 @@ class CardAdapter(cardList: MutableList<CommonViewModel> = ArrayList())
     /*------------------------------------------------------------------------*/
     // API
     /*------------------------------------------------------------------------*/
-
-    fun add(card: CommonViewModel): Boolean {
-        val index = cardList.lastIndex
-        val isAdded = cardList.add(card)
-        if (isAdded) {
-            notifyItemInserted(index)
-        }
-        return isAdded
-    }
 
     fun addAll(cardList: List<CommonViewModel>): Boolean {
         this.cardList.clear()

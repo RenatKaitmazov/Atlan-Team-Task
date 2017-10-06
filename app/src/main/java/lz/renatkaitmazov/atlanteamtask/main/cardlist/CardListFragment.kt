@@ -1,13 +1,12 @@
-package lz.renatkaitmazov.atlanteamtask.view.main.cardlist
+package lz.renatkaitmazov.atlanteamtask.main.cardlist
 
 import android.os.Bundle
-import android.view.View
 import lz.renatkaitmazov.atlanteamtask.app.AtlanApp
 import lz.renatkaitmazov.atlanteamtask.base.LoadingListFragment
-import lz.renatkaitmazov.atlanteamtask.di.fragment.FragmentModule
-import lz.renatkaitmazov.atlanteamtask.di.fragment.FragmentSubcomponent
-import lz.renatkaitmazov.atlanteamtask.view.main.cardlist.adapter.CardAdapter
-import lz.renatkaitmazov.atlanteamtask.view.model.CommonViewModel
+import lz.renatkaitmazov.atlanteamtask.di.fragment.CardListFragmentModule
+import lz.renatkaitmazov.atlanteamtask.di.fragment.CardListFragmentSubcomponent
+import lz.renatkaitmazov.atlanteamtask.main.cardlist.adapter.CardAdapter
+import lz.renatkaitmazov.atlanteamtask.main.cardlist.model.CommonViewModel
 import javax.inject.Inject
 
 /**
@@ -18,10 +17,18 @@ import javax.inject.Inject
 class CardListFragment : LoadingListFragment(), CardListView {
 
     /*------------------------------------------------------------------------*/
+    // Static
+    /*------------------------------------------------------------------------*/
+
+    companion object {
+        fun newInstance() = CardListFragment()
+    }
+
+    /*------------------------------------------------------------------------*/
     // Properties
     /*------------------------------------------------------------------------*/
 
-    private var fragmentSubcomponent: FragmentSubcomponent? = null
+    private var subcomponent: CardListFragmentSubcomponent? = null
     @Inject lateinit var presenter: CardListPresenterImpl
 
     /*------------------------------------------------------------------------*/
@@ -35,20 +42,20 @@ class CardListFragment : LoadingListFragment(), CardListView {
     }
 
     private fun makeInjectable() {
-        fragmentSubcomponent = AtlanApp.instance
+        subcomponent = AtlanApp.instance
                 .appComponent
-                .plus(FragmentModule())
-        fragmentSubcomponent!!.inject(this)
+                .plus(CardListFragmentModule())
+        subcomponent!!.inject(this)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onResume() {
+        super.onResume()
         presenter.getCommonData()
     }
 
     override fun onDestroy() {
         presenter.unbind()
-        fragmentSubcomponent = null
+        subcomponent = null
         super.onDestroy()
     }
 
@@ -65,12 +72,4 @@ class CardListFragment : LoadingListFragment(), CardListView {
     /*------------------------------------------------------------------------*/
 
     override fun getAdapter() = CardAdapter()
-
-    /*------------------------------------------------------------------------*/
-    // API
-    /*------------------------------------------------------------------------*/
-
-    companion object {
-        fun newInstance() = CardListFragment()
-    }
 }

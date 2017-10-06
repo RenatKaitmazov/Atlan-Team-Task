@@ -1,4 +1,4 @@
-package lz.renatkaitmazov.atlanteamtask.data
+package lz.renatkaitmazov.atlanteamtask.data.remote
 
 import io.reactivex.Single
 import lz.renatkaitmazov.atlanteamtask.data.model.CommonModel

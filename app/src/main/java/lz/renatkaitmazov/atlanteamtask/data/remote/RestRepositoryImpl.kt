@@ -1,7 +1,8 @@
-package lz.renatkaitmazov.atlanteamtask.data
+package lz.renatkaitmazov.atlanteamtask.data.remote
 
 import io.reactivex.Single
 import io.reactivex.functions.Function3
+import lz.renatkaitmazov.atlanteamtask.data.DataCache
 import lz.renatkaitmazov.atlanteamtask.data.model.CommonModel
 import lz.renatkaitmazov.atlanteamtask.data.model.DateTimeModel
 import lz.renatkaitmazov.atlanteamtask.data.model.HeaderModel
@@ -15,7 +16,7 @@ import retrofit2.Retrofit
 
 class RestRepositoryImpl(retrofit: Retrofit,
                          private val urlProvider: DynamicUrlProvider,
-                         private val cache: CommonDataCache) : RestRepository {
+                         private val cache: DataCache) : RestRepository {
 
     /*------------------------------------------------------------------------*/
     // Properties
@@ -28,7 +29,7 @@ class RestRepositoryImpl(retrofit: Retrofit,
     /*------------------------------------------------------------------------*/
 
     override fun getCommonData(): Single<CommonModel> {
-        val key = "Common Data Cache"
+        val key = "Common Data"
         val cachedCommonModel: CommonModel? = cache.get(key) as CommonModel?
         if (cachedCommonModel != null) {
             return Single.just(cachedCommonModel)

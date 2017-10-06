@@ -1,4 +1,4 @@
-package lz.renatkaitmazov.atlanteamtask.view.main
+package lz.renatkaitmazov.atlanteamtask.main
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity
 import lz.renatkaitmazov.atlanteamtask.R
 import lz.renatkaitmazov.atlanteamtask.addFragment
 import lz.renatkaitmazov.atlanteamtask.databinding.ActivityMainBinding
-import lz.renatkaitmazov.atlanteamtask.view.main.cardlist.CardListFragment
+import lz.renatkaitmazov.atlanteamtask.replaceFragment
+import lz.renatkaitmazov.atlanteamtask.main.cardlist.CardListFragment
+import lz.renatkaitmazov.atlanteamtask.main.contactlist.ContactListFragment
 
 /**
  *
@@ -38,9 +40,17 @@ class MainActivity : AppCompatActivity() {
     private fun initBottomNavView(navView: BottomNavigationView) {
         navView.selectedItemId = R.id.menu_cards
         navView.setOnNavigationItemSelectedListener listener@ { menuItem ->
-            when (menuItem.itemId) {
-                R.id.menu_cards -> println("Clicked " + menuItem.title)
-                R.id.menu_my_contacts -> println("Clicked " + menuItem.title)
+            val currentItemId = navView.selectedItemId
+            val selectedItemId = menuItem.itemId
+            if (currentItemId != selectedItemId) {
+                when (selectedItemId) {
+                    R.id.menu_cards -> {
+                        replaceFragment(CardListFragment.newInstance(), R.id.fragment_container)
+                    }
+                    R.id.menu_my_contacts -> {
+                        replaceFragment(ContactListFragment.newInstance(), R.id.fragment_container)
+                    }
+                }
             }
             return@listener true
         }

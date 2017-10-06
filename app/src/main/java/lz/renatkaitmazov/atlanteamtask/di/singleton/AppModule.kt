@@ -24,5 +24,5 @@ class AppModule(private val atlanApp: AtlanApp) {
     @Provides
     @Singleton
     @Named(NAME_APP_CONTEXT)
-    fun provideAppContext() = atlanApp
+    fun provideAppContext() = atlanApp.applicationContext
 }
