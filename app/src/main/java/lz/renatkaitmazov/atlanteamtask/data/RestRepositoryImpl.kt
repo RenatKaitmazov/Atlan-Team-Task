@@ -14,7 +14,8 @@ import retrofit2.Retrofit
  */
 
 class RestRepositoryImpl(retrofit: Retrofit,
-                         private val urlProvider: DynamicUrlProvider) : RestRepository {
+                         private val urlProvider: DynamicUrlProvider,
+                         private val cache: CommonDataCache) : RestRepository {
 
     /*------------------------------------------------------------------------*/
     // Properties
@@ -27,6 +28,12 @@ class RestRepositoryImpl(retrofit: Retrofit,
     /*------------------------------------------------------------------------*/
 
     override fun getCommonData(): Single<CommonModel> {
+        val key = "Common Data Cache"
+        val cachedCommonModel: CommonModel? = cache.get(key) as CommonModel?
+        if (cachedCommonModel != null) {
+            return Single.just(cachedCommonModel)
+        }
+
         val ipUrl = urlProvider.getUrl(DynamicUrlProvider.URL_IP_ADDRESS)
         val headersUrl = urlProvider.getUrl(DynamicUrlProvider.URL_HEADERS)
         val dateTimeUrl = urlProvider.getUrl(DynamicUrlProvider.URL_DATE_TIME)
@@ -34,8 +41,8 @@ class RestRepositoryImpl(retrofit: Retrofit,
                 restApi.getIp(ipUrl),
                 restApi.getHeaders(headersUrl),
                 restApi.getDateTime(dateTimeUrl),
-                Function3<IpModel, HeaderModel, DateTimeModel, CommonModel> { ip, hdr, dt ->
-                    CommonModel(
+                Function3<IpModel, HeaderModel, DateTimeModel, CommonModel> zipper@ { ip, hdr, dt ->
+                    val commonModel = CommonModel(
                             ip.ip,
                             hdr.acceptLanguage,
                             hdr.host,
@@ -45,6 +52,8 @@ class RestRepositoryImpl(retrofit: Retrofit,
                             dt.millisSinceEpoch,
                             dt.date
                     )
+                    cache.save(key, commonModel)
+                    return@zipper commonModel
                 }
         )
     }

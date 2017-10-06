@@ -2,6 +2,7 @@ package lz.renatkaitmazov.atlanteamtask.di.fragment
 
 import dagger.Module
 import dagger.Provides
+import lz.renatkaitmazov.atlanteamtask.data.CommonDataCache
 import lz.renatkaitmazov.atlanteamtask.data.DynamicUrlProvider
 import lz.renatkaitmazov.atlanteamtask.data.RestRepository
 import lz.renatkaitmazov.atlanteamtask.data.RestRepositoryImpl
@@ -35,8 +36,10 @@ class FragmentModule {
 
     @Provides
     @FragmentScope
-    fun provideRestRepository(retrofit: Retrofit, urlProvider: DynamicUrlProvider): RestRepository
-            = RestRepositoryImpl(retrofit, urlProvider)
+    fun provideRestRepository(retrofit: Retrofit,
+                              urlProvider: DynamicUrlProvider,
+                              commonDataCache: CommonDataCache): RestRepository
+            = RestRepositoryImpl(retrofit, urlProvider, commonDataCache)
 
     @Provides
     @FragmentScope
