@@ -24,6 +24,9 @@ class CardListFragment : LoadingListFragment(), CardListView, CardViewHolder.Cal
     /*------------------------------------------------------------------------*/
 
     companion object {
+        private const val TAG_ECHO_DIALOG = "ECHO_DIALOG"
+        private const val TAG_VALIDATION_DIALOG = "VALIDATION_DIALOG"
+
         fun newInstance() = CardListFragment()
     }
 
@@ -65,14 +68,24 @@ class CardListFragment : LoadingListFragment(), CardListView, CardViewHolder.Cal
     /*------------------------------------------------------------------------*/
     // CardListView implementation
     /*------------------------------------------------------------------------*/
+
     override fun showCommonData(commonData: List<CommonViewModel>) {
         val cardAdapter = recyclerView.adapter as? CardAdapter
         cardAdapter?.addAll(commonData)
     }
 
-    override fun showEchoJsonResult(result: String) = println(result)
+    override fun showEchoJsonResult(result: String) {
+        showJsonResultDialog(result, TAG_ECHO_DIALOG)
+    }
 
-    override fun showValidationResult(result: String) = println(result)
+    override fun showValidationResult(result: String) {
+        showJsonResultDialog(result, TAG_VALIDATION_DIALOG)
+    }
+
+    private fun showJsonResultDialog(jsonResult: String, tag: String) {
+        val dialog = JsonResultDialog.newInstance(jsonResult)
+        dialog.show(activity.supportFragmentManager, tag)
+    }
 
     /*------------------------------------------------------------------------*/
     // LoadingListFragment implementation

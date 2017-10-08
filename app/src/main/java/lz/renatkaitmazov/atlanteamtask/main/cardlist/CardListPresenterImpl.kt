@@ -67,15 +67,14 @@ class CardListPresenterImpl(private val restRepository: RestRepository,
                 .timeout(TIMEOUT, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doAfterTerminate { view?.hideProgress() }
                 .subscribe(
-                        succes@ { result ->
+                        success@ { result ->
                             if (view != null) {
-                                view!!.hideProgress()
                                 onSuccessAction(result)
                             }
                         },
                         error@ {
-                            view?.hideProgress()
                             println(it)
                         }
                 )

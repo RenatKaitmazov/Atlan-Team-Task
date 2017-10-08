@@ -56,14 +56,14 @@ class RestRepositoryImpl(retrofit: Retrofit,
         )
     }
 
-    override fun echoJson(json: String): Single<DynamicJsonModel> {
+    override fun echoJson(json: String): Single<Map<String, Any>> {
         val echoUrl = urlProvider.getUrl(DynamicUrlProvider.URL_JSON_ECHO)
         val builder = StringBuilder(echoUrl)
         json.split(" ").forEach { builder.append(it).append("/") }
         return restApi.echoJson(builder.toString())
     }
 
-    override fun validateJson(json: String): Single<DynamicJsonModel> {
+    override fun validateJson(json: String): Single<Map<String, Any>> {
         val validationUrl = urlProvider.getUrl(DynamicUrlProvider.URL_JSON_VALIDATION)
         val completeUrl = "$validationUrl$json"
         return restApi.validateJson(completeUrl)
