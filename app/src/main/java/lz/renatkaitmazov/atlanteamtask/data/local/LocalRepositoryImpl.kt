@@ -26,7 +26,6 @@ class LocalRepositoryImpl(private val dataCache: DataCache,
         val key = "Contacts Data"
         val cachedContactList: List<ContactModel>? = dataCache.get(key) as? List<ContactModel>
         if (cachedContactList != null) {
-            println("Returning cached list of contacts.")
             return Flowable.just(cachedContactList)
         }
 

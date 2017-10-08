@@ -1,11 +1,14 @@
 package lz.renatkaitmazov.atlanteamtask.main.cardlist
 
 import android.os.Bundle
+import android.widget.Toast
+import lz.renatkaitmazov.atlanteamtask.R
 import lz.renatkaitmazov.atlanteamtask.app.AtlanApp
 import lz.renatkaitmazov.atlanteamtask.base.LoadingListFragment
 import lz.renatkaitmazov.atlanteamtask.di.fragment.CardListFragmentModule
 import lz.renatkaitmazov.atlanteamtask.di.fragment.CardListFragmentSubcomponent
 import lz.renatkaitmazov.atlanteamtask.main.cardlist.adapter.CardAdapter
+import lz.renatkaitmazov.atlanteamtask.main.cardlist.adapter.CardViewHolder
 import lz.renatkaitmazov.atlanteamtask.main.cardlist.model.CommonViewModel
 import javax.inject.Inject
 
@@ -14,7 +17,7 @@ import javax.inject.Inject
  * @author Renat Kaitmazov
  */
 
-class CardListFragment : LoadingListFragment(), CardListView {
+class CardListFragment : LoadingListFragment(), CardListView, CardViewHolder.Callback {
 
     /*------------------------------------------------------------------------*/
     // Static
@@ -29,7 +32,7 @@ class CardListFragment : LoadingListFragment(), CardListView {
     /*------------------------------------------------------------------------*/
 
     private var subcomponent: CardListFragmentSubcomponent? = null
-    @Inject lateinit var presenter: CardListPresenterImpl
+    @Inject internal lateinit var presenter: CardListPresenterImpl
 
     /*------------------------------------------------------------------------*/
     // Lifecycle Events
@@ -67,9 +70,25 @@ class CardListFragment : LoadingListFragment(), CardListView {
         cardAdapter?.addAll(commonData)
     }
 
+    override fun showEchoJsonResult(result: String) = println(result)
+
+    override fun showValidationResult(result: String) = println(result)
+
     /*------------------------------------------------------------------------*/
     // LoadingListFragment implementation
     /*------------------------------------------------------------------------*/
 
-    override fun getAdapter() = CardAdapter()
+    override fun getAdapter() = CardAdapter(cardViewHolderListener = this)
+
+    /*------------------------------------------------------------------------*/
+    // CardViewHolder.Callback implementation
+    /*------------------------------------------------------------------------*/
+
+    override fun onEchoJsonButtonClick(json: String) = presenter.echoJson(json)
+
+    override fun onValidateJsonButtonClick(json: String) = presenter.validateJson(json)
+
+    override fun onEmptyJsonSubmit() {
+        Toast.makeText(activity, R.string.warning_empty_edit_text, Toast.LENGTH_SHORT).show()
+    }
 }

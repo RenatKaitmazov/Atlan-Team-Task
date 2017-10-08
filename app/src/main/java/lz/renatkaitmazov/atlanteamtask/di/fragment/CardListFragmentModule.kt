@@ -9,6 +9,7 @@ import lz.renatkaitmazov.atlanteamtask.data.remote.RestRepositoryImpl
 import lz.renatkaitmazov.atlanteamtask.di.scope.FragmentScope
 import lz.renatkaitmazov.atlanteamtask.main.cardlist.CardListPresenterImpl
 import lz.renatkaitmazov.atlanteamtask.main.cardlist.model.CardMapper
+import lz.renatkaitmazov.atlanteamtask.main.cardlist.model.DynamicJsonParser
 import retrofit2.Retrofit
 
 /**
@@ -26,11 +27,18 @@ class CardListFragmentModule {
     @Provides
     @FragmentScope
     fun provideCardListPresenter(repository: RestRepository,
-                                 mapper: CardMapper) = CardListPresenterImpl(repository, mapper)
+                                 mapper: CardMapper,
+                                 parser: DynamicJsonParser): CardListPresenterImpl {
+        return CardListPresenterImpl(repository, mapper, parser)
+    }
 
     @Provides
     @FragmentScope
     fun provideCardMapper() = CardMapper()
+
+    @Provides
+    @FragmentScope
+    fun provideDynamicJsonParser() = DynamicJsonParser()
 
     @Provides
     @FragmentScope

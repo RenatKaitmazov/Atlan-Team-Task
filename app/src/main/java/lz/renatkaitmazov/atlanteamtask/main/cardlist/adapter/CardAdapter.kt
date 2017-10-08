@@ -13,8 +13,9 @@ import lz.renatkaitmazov.atlanteamtask.main.cardlist.model.CommonViewModel
  * @author Renat Kaitmazov
  */
 
-class CardAdapter(cardList: MutableList<CommonViewModel> = ArrayList())
-    : RecyclerView.Adapter<CardViewHolder>() {
+class CardAdapter(cardList: MutableList<CommonViewModel> = ArrayList(),
+                  private val cardViewHolderListener: CardViewHolder.Callback? = null) :
+        RecyclerView.Adapter<CardViewHolder>() {
 
     /*------------------------------------------------------------------------*/
     // Properties
@@ -36,7 +37,7 @@ class CardAdapter(cardList: MutableList<CommonViewModel> = ArrayList())
                 parent,
                 false
         )
-        return CardViewHolder(binding)
+        return CardViewHolder(binding, cardViewHolderListener)
     }
 
     override fun onBindViewHolder(holder: CardViewHolder?, position: Int) {

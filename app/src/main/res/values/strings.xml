@@ -17,10 +17,11 @@
     <string name="label_milliseconds">Milliseconds since epoch:</string>
     <string name="label_date">Date:</string>
     <string name="label_echo_json">Echo JSON</string>
-    <string name="hint_echo_json">key value</string>
+    <string name="hint_echo_json">key1 value1 key2 value2</string>
     <string name="label_submit">Submit</string>
     <string name="validation">Validation</string>
-    <string name="hint_validation">{\"key\": \"value\"}</string>
+    <string name="hint_validation">{key1:value1, key2:value2}</string>
+    <string name="warning_empty_edit_text">Enter some text</string>
 
     <!--Contact List Item Resources-->
     <string name="label_first_name">First Name:</string>

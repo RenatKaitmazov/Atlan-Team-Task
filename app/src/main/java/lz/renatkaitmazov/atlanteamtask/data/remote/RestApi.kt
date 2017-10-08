@@ -4,6 +4,7 @@ import io.reactivex.Single
 import lz.renatkaitmazov.atlanteamtask.data.model.DateTimeModel
 import lz.renatkaitmazov.atlanteamtask.data.model.HeaderModel
 import lz.renatkaitmazov.atlanteamtask.data.model.IpModel
+import lz.renatkaitmazov.atlanteamtask.data.model.DynamicJsonModel
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Url
@@ -27,4 +28,10 @@ interface RestApi {
 
     @GET
     fun getDateTime(@Url url: String): Single<DateTimeModel>
+
+    @GET
+    fun echoJson(@Url url: String): Single<DynamicJsonModel>
+
+    @GET
+    fun validateJson(@Url url: String): Single<DynamicJsonModel>
 }

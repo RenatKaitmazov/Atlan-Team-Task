@@ -1,5 +1,7 @@
 package lz.renatkaitmazov.atlanteamtask.data
 
+import java.util.concurrent.ConcurrentHashMap
+
 /**
  *
  * @author Renat Kaitmazov
@@ -11,7 +13,7 @@ class DataCache {
     // Properties
     /*------------------------------------------------------------------------*/
 
-    private val cache: MutableMap<String, Any> = HashMap(2)
+    private val cache = ConcurrentHashMap<String, Any>(2)
 
     /*------------------------------------------------------------------------*/
     // API

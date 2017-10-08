@@ -9,4 +9,6 @@ import lz.renatkaitmazov.atlanteamtask.base.Presenter
 
 interface CardListPresenter : Presenter<CardListView> {
     fun getCommonData()
+    fun echoJson(json: String)
+    fun validateJson(json: String)
 }

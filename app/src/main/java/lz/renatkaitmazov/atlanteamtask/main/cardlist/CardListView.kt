@@ -10,4 +10,6 @@ import lz.renatkaitmazov.atlanteamtask.main.cardlist.model.CommonViewModel
 
 interface CardListView : LoadingView {
     fun showCommonData(commonData: List<CommonViewModel>)
+    fun showEchoJsonResult(result: String)
+    fun showValidationResult(result: String)
 }
